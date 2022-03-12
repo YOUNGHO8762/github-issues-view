@@ -9,11 +9,14 @@ const CommentList = ({ commentsUrl }) => {
 
   const getComments = useCallback(async () => {
     try {
-      const result = await axios(commentsUrl, {
-        headers: {
-          Authorization: `token ${TOKEN}`,
-        },
-      });
+      const result = await axios(
+        commentsUrl,
+        TOKEN && {
+          headers: {
+            Authorization: `token ${TOKEN}`,
+          },
+        }
+      );
 
       const comments = [];
       await result.data.forEach(comment => {

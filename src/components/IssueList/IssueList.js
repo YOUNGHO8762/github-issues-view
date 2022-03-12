@@ -30,11 +30,14 @@ const IssueList = ({ repositories }) => {
     try {
       const result = await Promise.all(
         repositories.map(repository => {
-          return axios(`${REPO_INFO_API}/${repository}/issues`, {
-            headers: {
-              Authorization: `token ${TOKEN}`,
-            },
-          });
+          return axios(
+            `${REPO_INFO_API}/${repository}/issues`,
+            TOKEN && {
+              headers: {
+                Authorization: `token ${TOKEN}`,
+              },
+            }
+          );
         })
       );
 

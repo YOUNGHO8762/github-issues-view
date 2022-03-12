@@ -5,7 +5,7 @@ import axios from 'axios';
 import useLocalStorage from '../hooks/useLocalStorage';
 import SearchedRepositoryList from '../components/SearchRepositoryList/SearchedRepositoryList';
 import StatusMessage from '../components/StatusMessage/StatusMessage';
-import { REPOS_SEARCH_API } from '../config';
+import { REPOS_SEARCH_API, TOKEN } from '../config';
 
 const SearchResult = ({ match }) => {
   const [searchedRepositories, setSearchedRepositories] = useState([]);
@@ -17,12 +17,13 @@ const SearchResult = ({ match }) => {
     try {
       const result = await axios(
         `${REPOS_SEARCH_API}/repositories?q=${repositoryName}%20in:name`,
-        {
+        TOKEN && {
           headers: {
-            Authorization: 'token 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',
+            authorization: `token ${TOKEN}`,
           },
         }
       );
+
       setSearchedRepositories(result.data.items);
       setIsLoading(true);
     } catch (err) {
