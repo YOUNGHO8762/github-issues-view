@@ -17,6 +17,7 @@ const Nav = () => {
   };
 
   const handleSearchClick = e => {
+    e.preventDefault();
     history.push(`/repository/${input}`);
   };
 

@@ -42,6 +42,7 @@ const RepositoryContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 1024px;
   padding: 2rem 1.5rem;
   border-top: 1px solid #dddddd;
 
